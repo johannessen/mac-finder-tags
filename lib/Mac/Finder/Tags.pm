@@ -6,7 +6,7 @@ package Mac::Finder::Tags;
 
 
 use Mac::PropertyList 'parse_plist';
-use Object::Pad 0.43;
+use Object::Pad 0.60;
 use Path::Tiny;
 
 use Mac::Finder::Tags::Impl::mdls;
@@ -20,10 +20,10 @@ our $MAX_TRIES = 5;
 
 class Mac::Finder::Tags :strict(params) {
 	
-	has $impl :param = undef;
-	has $caching :param = 0;
-	has $file_cache;
-	has @tags_cache;
+	field $impl :param = undef;
+	field $caching :param = 0;
+	field $file_cache;
+	field @tags_cache;
 	
 	ADJUST {
 		$impl = $caching ? 'xattr' : 'mdls' unless defined $impl;
