@@ -142,10 +142,6 @@ __END__
 This class offers methods to read and write macOS file system tags
 (the feature that replaced Mac OS Finder labels from OS X 10.9).
 
-It is also an attempt to put L<Object::Pad> to some use. As such,
-all the warnings about the experimental status of L<Object::Pad>
-apply directly to this module as well.
-
 This software has pre-release quality. There is little documentation
 and no schedule for further development.
 
@@ -157,7 +153,8 @@ tags for files that have multiple tags. This issue is mitigated
 to some extent when caching is enabled.
 
 When caching is enabled, I<all> tags on the entire system will be
-cached using C<mdfind> at object creation time. C<get_tags()> will
+cached using C<mdfind> at object creation time (however, files in
+locations not indexed by Spotlight are skipped). C<get_tags()> will
 then only perform lookups in this cache, which is extremely fast.
 You should consider caching whenever you intend to look up more
 than maybe a hundred or so files; however, if your system has an
@@ -192,6 +189,6 @@ The following methods are unimplemented in this version:
 =back
 
 This software may not work on other filesystems than HFS+ or APFS.
-So far, it has only been tested on macOS 10.15.
+It has not been tested on all macOS versions.
 
 =cut
